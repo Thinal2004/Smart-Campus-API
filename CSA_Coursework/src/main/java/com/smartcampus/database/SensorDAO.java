@@ -24,4 +24,20 @@ public class SensorDAO {
         MockDatabase.getSensors().put(sensor.getId(), sensor);
         return sensor;  
     }
+    
+    // Get a sensor by id
+    public Sensor getSensor(String sensorId){
+        return MockDatabase.getSensors().get(sensorId);
+    }
+    
+    // Update an existing sensor 
+    public Sensor updateSensor(String sensorId, Sensor updatedSensor) {
+        // Update if the sensor exists
+        if (MockDatabase.getSensors().containsKey(sensorId)) {
+            updatedSensor.setId(sensorId); 
+            MockDatabase.getSensors().put(sensorId, updatedSensor);
+            return updatedSensor;
+        }
+        return null;
+    }
 }
