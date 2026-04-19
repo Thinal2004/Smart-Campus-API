@@ -9,6 +9,7 @@ import com.smartcampus.models.Room;
 import java.net.URI;
 import java.util.Collection;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -49,5 +50,26 @@ public class SensorRoomResource {
         return Response.created(URI.create("/api/v1/rooms/" + newRoom.getId()))
                        .entity(newRoom)
                        .build();
+    }
+    
+    @DELETE
+    @Path("/{roomId}")
+    public Response deleteRoom(@PathParam("roomId") String roomId) {
+        Room room = roomDAO.getRoom(roomId);
+        
+        if (room == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        // Prevent deletion if sensors are attached
+        if (room.getSensorIds() != null && !room.getSensorIds().isEmpty()) {
+            
+            return Response.status(Response.Status.CONFLICT)
+                           .entity("{\"error\": \"Cannot delete room: active sensors attached.\"}")
+                           .build();
+        }
+
+        roomDAO.deleteRoom(roomId);
+        return Response.noContent().build();
     }
 }
