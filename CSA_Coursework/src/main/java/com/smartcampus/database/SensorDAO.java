@@ -4,6 +4,7 @@
  */
 package com.smartcampus.database;
 
+import com.smartcampus.models.Room;
 import com.smartcampus.models.Sensor;
 import java.util.Collection;
 
@@ -22,6 +23,12 @@ public class SensorDAO {
     public Sensor addSensor(Sensor sensor) {
 
         MockDatabase.getSensors().put(sensor.getId(), sensor);
+        
+        // Add sensor to the list in the room
+        Room parentRoom = MockDatabase.getRooms().get(sensor.getRoomId());
+        if (parentRoom != null) {
+            parentRoom.getSensorIds().add(sensor.getId());
+        }
         return sensor;  
     }
     

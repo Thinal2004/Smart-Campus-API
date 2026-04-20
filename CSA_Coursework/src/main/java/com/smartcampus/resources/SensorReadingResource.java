@@ -10,14 +10,19 @@ import com.smartcampus.models.Sensor;
 import com.smartcampus.models.SensorReading;
 import java.net.URI;
 import java.util.List;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
  *
  * @author HP
  */
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class SensorReadingResource {
 
     private String sensorId;

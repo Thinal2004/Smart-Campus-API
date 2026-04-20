@@ -42,6 +42,7 @@ public class MockDatabase {
         sensor1.setStatus("ACTIVE");
         sensor1.setRoomId("COMP-101"); 
         sensors.put(sensor1.getId(), sensor1);
+        room2.getSensorIds().add(sensor1.getId());
 
         Sensor sensor2 = new Sensor();
         sensor2.setId("SENS-002");
@@ -49,6 +50,7 @@ public class MockDatabase {
         sensor2.setStatus("MAINTENANCE");
         sensor2.setRoomId("LIB-301");
         sensors.put(sensor2.getId(), sensor2);
+        room1.getSensorIds().add(sensor2.getId());
         
         Sensor sensor3 = new Sensor();
         sensor3.setId("SENS-003");
@@ -56,6 +58,7 @@ public class MockDatabase {
         sensor3.setStatus("OFFLINE");
         sensor3.setRoomId("COMP-101");
         sensors.put(sensor3.getId(), sensor3);
+        room2.getSensorIds().add(sensor3.getId());
     }
 
     public static Map<String, Room> getRooms() {

@@ -6,6 +6,7 @@ package com.smartcampus.resources;
 
 import com.smartcampus.database.RoomDAO;
 import com.smartcampus.database.SensorDAO;
+import com.smartcampus.exceptions.LinkedResourceNotFoundException;
 import com.smartcampus.models.Sensor;
 import java.net.URI;
 import java.util.ArrayList;
@@ -56,9 +57,7 @@ public class SensorResource {
         String roomId = sensor.getRoomId();
 
         if (roomId == null || roomDAO.getRoom(roomId) == null) {
-            return Response.status(Response.Status.BAD_REQUEST)
-                    .entity("{\"error\": \"Foreign Key Violation: The specified roomId does not exist.\"}")
-                    .build();
+            throw new LinkedResourceNotFoundException("The specified roomId does not exist.");
         }
 
         Sensor newSensor = sensorDAO.addSensor(sensor);

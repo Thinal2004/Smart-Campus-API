@@ -4,6 +4,7 @@
  */
 package com.smartcampus.database;
 
+import com.smartcampus.exceptions.RoomNotEmptyException;
 import com.smartcampus.models.Room;
 import java.util.Collection;
 
@@ -12,22 +13,31 @@ import java.util.Collection;
  * @author HP
  */
 public class RoomDAO {
-    public Collection<Room> getAllRooms(){
+
+    public Collection<Room> getAllRooms() {
         return MockDatabase.getRooms().values();
     }
-    
-    public Room getRoom(String id){
-        return MockDatabase.getRooms().get(id);   
+
+    public Room getRoom(String id) {
+        return MockDatabase.getRooms().get(id);
     }
-    
-    public Room addRoom(Room room){
+
+    public Room addRoom(Room room) {
         MockDatabase.getRooms().put(room.getId(), room);
         return room;
     }
-    
+
     public void deleteRoom(String roomId) {
+        Room targetRoom = MockDatabase.getRooms().get(roomId);
+        // Check if the room exists
+        if (targetRoom != null) {
+            // Check for active sensors
+            if (!targetRoom.getSensorIds().isEmpty()) {
+                throw new RoomNotEmptyException("Cannot delete room: The room is currently occupied by active hardware.");
+            }
+        }
+
+        // If the list is empty, delete room
         MockDatabase.getRooms().remove(roomId);
     }
 }
-
-
