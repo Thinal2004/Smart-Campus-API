@@ -6,6 +6,7 @@ package com.smartcampus.resources;
 
 import com.smartcampus.database.SensorDAO;
 import com.smartcampus.database.SensorReadingDAO;
+import com.smartcampus.exceptions.SensorUnavailableException;
 import com.smartcampus.models.Sensor;
 import com.smartcampus.models.SensorReading;
 import java.net.URI;
@@ -45,6 +46,10 @@ public class SensorReadingResource {
             return Response.status(Response.Status.NOT_FOUND)
                            .entity("{\"error\": \"Sensor not found. Cannot add reading.\"}")
                            .build();
+        }
+        
+        if(parentSensor.getStatus().equalsIgnoreCase("MAINTENANCE")){
+            throw new SensorUnavailableException("Sensor is physically disconnected.");
         }
         
         SensorReading createdReading = readingDAO.addReading(sensorId, newReading);
