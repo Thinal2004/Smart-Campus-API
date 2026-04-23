@@ -6,7 +6,7 @@ package com.smartcampus.models;
 
 /**
  *
- * @author HP
+ * @author Thinal Kulathunga
  */
 public class Sensor {
     private String id; // Unique identifier

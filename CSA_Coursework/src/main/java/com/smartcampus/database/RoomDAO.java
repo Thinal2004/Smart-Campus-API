@@ -10,7 +10,7 @@ import java.util.Collection;
 
 /**
  *
- * @author HP
+ * @author Thinal Kulathunga
  */
 public class RoomDAO {
 

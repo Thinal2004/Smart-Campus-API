@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author HP
+ * @author Thinal Kulathunga
  */
 public class Room {
     private String id; // Unique identifier

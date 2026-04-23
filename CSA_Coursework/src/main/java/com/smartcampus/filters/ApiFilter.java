@@ -10,11 +10,16 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
+import javax.ws.rs.container.PreMatching;
+import javax.ws.rs.ext.Provider;
 
 /**
  *
- * @author HP
+ * @author Thinal Kulathunga
  */
+
+@Provider
+@PreMatching
 public class ApiFilter implements ContainerRequestFilter, ContainerResponseFilter{
     
     private static final Logger LOGGER = Logger.getLogger(ApiFilter.class.getName());

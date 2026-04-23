@@ -11,7 +11,7 @@ import java.util.UUID;
 
 /**
  *
- * @author HP
+ * @author Thinal Kulathunga
  */
 public class SensorReadingDAO {
     // Fetch all readings for a specific sensor

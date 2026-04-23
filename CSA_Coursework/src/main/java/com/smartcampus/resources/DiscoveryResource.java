@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 
 /**
  *
- * @author HP
+ * @author Thinal Kulathunga
  */
 @Path("/")
 public class DiscoveryResource {

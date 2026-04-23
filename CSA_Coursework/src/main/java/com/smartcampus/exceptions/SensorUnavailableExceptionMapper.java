@@ -10,7 +10,7 @@ import javax.ws.rs.ext.Provider;
 
 /**
  *
- * @author HP
+ * @author Thinal Kulathunga
  */
 @Provider
 public class SensorUnavailableExceptionMapper implements ExceptionMapper<SensorUnavailableException>{

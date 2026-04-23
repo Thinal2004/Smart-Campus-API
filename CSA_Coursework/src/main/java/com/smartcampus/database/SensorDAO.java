@@ -10,7 +10,7 @@ import java.util.Collection;
 
 /**
  *
- * @author HP
+ * @author Thinal Kulathunga
  */
 public class SensorDAO {
 
@@ -27,7 +27,7 @@ public class SensorDAO {
         // Add sensor to the list in the room
         Room parentRoom = MockDatabase.getRooms().get(sensor.getRoomId());
         if (parentRoom != null) {
-            parentRoom.getSensorIds().add(sensor.getId());
+            parentRoom.addSensorId(sensor.getId());
         }
         return sensor;  
     }

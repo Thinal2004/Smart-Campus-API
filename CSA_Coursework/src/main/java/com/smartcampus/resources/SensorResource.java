@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -24,16 +24,18 @@ import javax.ws.rs.core.Response;
 
 /**
  *
- * @author HP
+ * @author Thinal Kulathunga
  */
 @Path("sensors")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class SensorResource {
 
+    // DAOs for interact with mockdatabase
     private SensorDAO sensorDAO = new SensorDAO();
     private RoomDAO roomDAO = new RoomDAO();
 
+    // Retrieves all sensors
     @GET
     public Collection<Sensor> getAllSensors(@QueryParam("type") String type) {
         Collection<Sensor> sensors = sensorDAO.getAllSensors();
@@ -52,6 +54,7 @@ public class SensorResource {
         return filteredSensors;
     }
 
+    // Add new sensor
     @POST
     public Response createSensor(Sensor sensor) {
         String roomId = sensor.getRoomId();
@@ -65,6 +68,7 @@ public class SensorResource {
                 .entity(newSensor).build();
     }
     
+    // Get sensor readings
     @Path("/{sensorId}/readings")
     public SensorReadingResource getSensorReadingResource(@PathParam("sensorId") String sensorId) {
         return new SensorReadingResource(sensorId);

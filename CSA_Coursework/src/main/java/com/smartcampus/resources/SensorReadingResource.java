@@ -20,7 +20,7 @@ import javax.ws.rs.core.Response;
 
 /**
  *
- * @author HP
+ * @author Thinal Kulathunga
  */
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)

@@ -6,7 +6,7 @@ package com.smartcampus.exceptions;
 
 /**
  *
- * @author HP
+ * @author Thinal Kulathunga
  */
 public class LinkedResourceNotFoundException extends RuntimeException {
 

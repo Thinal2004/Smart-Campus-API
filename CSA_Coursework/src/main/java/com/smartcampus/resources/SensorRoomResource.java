@@ -20,20 +20,22 @@ import javax.ws.rs.core.Response;
 
 /**
  *
- * @author HP
+ * @author Thinal Kulathunga
  */
 @Path("rooms")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class SensorRoomResource {
-
+    // Instantiates the Data Access Object to interact with the mock database
     RoomDAO roomDAO = new RoomDAO();
 
+    // Retrieves a list of all rooms in the system.
     @GET
     public Collection<Room> getAllRooms() {
         return roomDAO.getAllRooms();
     }
 
+    // Retrieves room by ID
     @GET
     @Path("/{roomId}")
     public Response getRoom(@PathParam("roomId") String roomId) {
@@ -44,14 +46,16 @@ public class SensorRoomResource {
         return Response.ok(room).build();
     }
 
+    // Create a new room
     @POST
-    public Response CreateRoom(Room room) {
+    public Response createRoom(Room room) {
         Room newRoom = roomDAO.addRoom(room);
         return Response.created(URI.create("/api/v1/rooms/" + newRoom.getId()))
                 .entity(newRoom)
                 .build();
     }
 
+    // Room decommisioning
     @DELETE
     @Path("/{roomId}")
     public Response deleteRoom(@PathParam("roomId") String roomId) {

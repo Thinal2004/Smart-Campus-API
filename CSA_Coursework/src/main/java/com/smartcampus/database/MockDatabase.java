@@ -4,22 +4,23 @@
  */
 package com.smartcampus.database;
 
-import java.util.HashMap;
 import java.util.Map;
 import com.smartcampus.models.Room;
 import com.smartcampus.models.Sensor;
 import com.smartcampus.models.SensorReading;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
- * @author HP
+ * @author Thinal Kulathunga
  */
 public class MockDatabase {
-    // Static maps to simulate database tables holding data in memory
-    private static Map<String, Room> rooms = new HashMap<>();
-    private static Map<String, Sensor> sensors = new HashMap<>();
-    private static Map<String, List<SensorReading>> sensorReadings = new HashMap<>();
+    // Static maps to simulate database tables 
+    // ConcurrentHashmaps to prevent race conditions in a multi-threaded environment
+    private static Map<String, Room> rooms = new ConcurrentHashMap<>();
+    private static Map<String, Sensor> sensors = new ConcurrentHashMap<>();
+    private static Map<String, List<SensorReading>> sensorReadings = new ConcurrentHashMap<>();
     
     static{
         // Mock rooms
